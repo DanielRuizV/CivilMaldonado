@@ -19,19 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search');
     const tableHeaders = document.querySelectorAll('th');
 
-    // Function to parse CSV data into an array of objects
-    function parseCSV(data) {
-        const rows = data.split('\n').filter(row => row.trim() !== ''); // Filtrar filas vacías
-        const headers = rows[0].split(',');
+   function parseCSV(data) {
+    const rows = data.split('\n').filter(row => row.trim() !== ''); // Filtrar filas vacías
+    const headers = rows[0].split(',').map(header => header.trim()); // Asegúrate de trim los encabezados
 
-        return rows.slice(1).map(row => {
-            const values = row.split(',');
-            return headers.reduce((object, header, index) => {
-                object[header.trim()] = values[index] ? values[index].trim() : ''; // Verificación de valores indefinidos
-                return object;
-            }, {});
-        });
-    }
+    return rows.slice(1).map(row => {
+        const values = row.split(',');
+        return headers.reduce((object, header, index) => {
+            object[header] = values[index] ? values[index].trim() : ''; // Verificación de valores indefinidos
+            return object;
+        }, {});
+    });
+}
+
 
     // Function to load the data into the table
     function loadTableData(casos) {
