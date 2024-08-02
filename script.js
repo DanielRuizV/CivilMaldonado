@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         casos.forEach((caso, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${index + 1}</td>
+                <td>${index}</td>
                 <td>${caso['NÚMERO']}</td>
                 <td>${caso['ABOGADO']}</td>
                 <td>${caso['CASO']}</td>
